@@ -24,6 +24,11 @@ package leetcode;
  */
 public class CuttingRope {
 
+    /**
+     * 贪心算法
+     * @param num
+     * @return
+     */
     public static int res(int num){
 
         if (2==num){
