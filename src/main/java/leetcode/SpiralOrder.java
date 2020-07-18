@@ -25,59 +25,48 @@ public class SpiralOrder {
      * @return
      */
     public int[] spiralOrder(int[][] matrix) {
-        int[] order = new int[matrix.length*matrix[0].length];
-        /**
-         * 头
-         */
-        int top =0;
-        /**
-         * 左
-         */
-        int left=0;
-        /**
-         * 右
-         */
-        int right=matrix[0].length-1;
-        /**
-         * 尾
-         */
-        int tail=0;
-        int count=0;
-        for (int i=0;i<matrix[0].length-1;i++){
-            /**
-             * 左到右
-             */
-            for (int j=0;j<matrix[top].length-1;j++){
-                order[count]= matrix[top][left];
-                count++;
-                left++;
+        if(matrix.length == 0){
+            return new int[0];
+        }
+        int l = 0, r = matrix[0].length - 1, t = 0, b = matrix.length - 1, x = 0;
+        int[] res = new int[(r + 1) * (b + 1)];
+        while(true) {
+            for(int i = l; i <= r; i++){
+                /**
+                 *   left to right.
+                 */
+                res[x++] = matrix[t][i];
+                if(++t > b){
+                    break;
+                }
             }
-            /**
-             * 上到下
-             */
-            for (int j=0;j<matrix.length;j++){
-                order[count]= matrix[left][tail];
-                count++;
-                tail++;
+            for(int i = t; i <= b; i++){
+                /**
+                 *   top to bottom.
+                 */
+                res[x++] = matrix[i][r];
+                if(l > --r){
+                    break;
+                }
             }
-
-            /**
-             * 右到左
-             */
-            for (int j=0;j<matrix[0].length-1;j++){
-                order[count]= matrix[tail][right];
-                count++;
-                right--;
+            for(int i = r; i >= l; i--){
+                /**
+                 *  right to left.
+                 */
+                res[x++] = matrix[b][i];
+                if(t > --b){
+                    break;
+                }
             }
-            /**
-             * 下到上
-             */
-            for (int j=0;j<matrix[0].length-1;j++){
-                order[count]= matrix[left][tail];
-                count++;
-                left--;
+            for(int i = b; i >= t; i--){
+                /**
+                 *  bottom to top.
+                 */
+                res[x++] = matrix[i][l];
+                if(++l > r) {
+                    break;
+                }
             }
         }
-        return order;
     }
 }
