@@ -104,5 +104,9 @@ public class UseConcurrentHashMap {
 //        }
 
         map.get("");
+        int count=0;
+        while (true){
+            System.out.println("#######"+ count++);
+        }
     }
 }
