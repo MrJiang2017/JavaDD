@@ -4,6 +4,7 @@ public class StackOOM {
     private int stackDep = 1;
     public void stackLeak(){
         stackDep++;
+        System.out.println("------"+stackDep);
         stackLeak();
     }
 
